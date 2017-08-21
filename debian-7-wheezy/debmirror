@@ -2090,7 +2090,7 @@ sub get_release {
 
 sub name_release {
   my ($type, $tdir, $dist) = @_;
-  my ($buf, $codename, $suite);
+  my ($buf, $codename, $suite, $label);
   my $origin = "unknown";
 
   if (-f "$tdir/Release") {
@@ -2104,6 +2104,7 @@ sub name_release {
 
     $_ = $buf;
     ($origin) = m/^Origin:\s+(.*)/im if (/^Origin:/im);
+    ($label) = m/^Label:\s+(.*)/im;
     ($codename) = m/^Codename:\s+(.*)/im;
     ($suite) = m/^Suite:\s+(.*)/im;
   } elsif ($ignore_missing_release) {
@@ -2114,7 +2115,15 @@ sub name_release {
   # raw dist (codename or suite) and the subdirectory.
   my ($dist_raw, $dist_sdir) = split_dist($dist);
 
-  if ($origin eq "none") {
+  if ($origin eq "None" and $label eq "Devuan") {
+    ; # Nothing to do
+  } elsif ($origin eq "Devuan") {
+    if ($label eq "Devuan") {
+      ; # Nothing to do
+    } else {
+      $codename = $suite;
+    }
+  } elsif ($origin eq "none") {
     $codename = $dist_raw;
   } elsif ($origin eq "Ubuntu" or $origin eq "Canonical") {
     if ($suite) {
