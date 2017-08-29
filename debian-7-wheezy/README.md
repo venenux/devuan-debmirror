@@ -1,9 +1,10 @@
 # devuan-debmirror
 
-* debmirror script modified in order to make a *private* mirror of a devuan package repository
+* debmirror script modified in order to make a PRIVATE mirror of a devuan package repository
 * this script apply for debian wheezy
 * this is NOT the official way to make a public mirror and MUST NOT be used to make a public mirror
-  see : https://lists.dyne.org/lurker/message/20170802.090410.d78d51fe.en.html
+* see : https://lists.dyne.org/lurker/message/20170802.090410.d78d51fe.en.html
+* https://devuan.org
 
 Example : mirroring jessie :
 
