@@ -1,2 +1,2 @@
 # devuan-debmirror
-debmirror script modified in order to mirror a devuan package repository
+debmirror script modified in order to make a private mirror of a devuan package repository
